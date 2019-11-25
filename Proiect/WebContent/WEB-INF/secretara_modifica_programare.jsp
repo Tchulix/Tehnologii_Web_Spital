@@ -25,7 +25,7 @@
      Class.forName("com.mysql.cj.jdbc.Driver"); //.newInstance();
      
      
-     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "alrasjbs");
+     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "123456!");
      
      Statement stm = conn.createStatement();
      
@@ -72,7 +72,9 @@
    
 			<tr>
                <td colspan ="2">
-                  <input type="submit" name="Modifica" value= "Modifica" />
+                  <a href="${pageContext.request.contextPath}/secretara_modifica_buton_programare">
+ 					 Modifica o programare!
+				 </a>
                </td>
             </tr>  
             			<tr>
