@@ -67,14 +67,15 @@ try {
 	        progrID = progID.getInt("id");
 	    	
 	    	Statement addConsult = MySQLConnUtils.getMySQLConnection().createStatement();
-<<<<<<< HEAD
-	    	String query2 = "INSERT INTO INTERVENTIE_CHIRURGICALA (id, durata_estimata, personal, ustensile) VALUES (" + progrID + ", " + (Integer.parseInt(request.getParameter("ore"))*60+Integer.parseInt(request.getParameter("minute"))) + ", '" +
-	    	request.getParameter("personal") + "', '" + request.getParameter("ustensile") + "');";
-=======
+	    	
 	    	String query2 = "INSERT INTO CONSULT (id, diagnostic, trimitere_catre, medicamente) VALUES (" + progrID + ",'','','');";
->>>>>>> branch 'master' of https://github.com/Tchulix/Tehnologii_Web_Spital.git
+
 	    	addConsult.executeUpdate(query2);
-	    
+	    	
+	    	Statement addInterventie = MySQLConnUtils.getMySQLConnection().createStatement();
+	    	String query3 = "INSERT INTO INTERVENTIE_CHIRURGICALA (id, durata_estimata, personal, ustensile) VALUES (" + progrID + ", " + (Integer.parseInt(request.getParameter("ore"))*60+Integer.parseInt(request.getParameter("minute"))) + ", '" +
+	    	    	request.getParameter("personal") + "', '" + request.getParameter("ustensile") + "');";
+	    	addInterventie.executeUpdate(query3);
 	        response.sendRedirect(request.getContextPath() + "/secretara");
 		}catch(Exception e) {
 			e.printStackTrace();
