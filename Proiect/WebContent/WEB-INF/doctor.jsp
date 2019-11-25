@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-I'm a doctor
+<form method="POST" action="${pageContext.request.contextPath}/doctor_vizualizeaza_programari">
+<input type="hidden" name="redirectId" value="${param.redirectId}" />
+<input type="submit" value= "Verifica Programari" />
+ <a href="${pageContext.request.contextPath}/">Anuleaza</a></form>
 </body>
 </html>
