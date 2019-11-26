@@ -92,9 +92,10 @@ public class LoginServlet extends HttpServlet {
         		case "doctor":
         			Statement getSpecializare = MySQLConnUtils.getMySQLConnection().createStatement();
         			ResultSet rs3 = getSpecializare.executeQuery("SELECT SPECIALIZARE FROM DOCTOR WHERE ID = "+
-        			employeeId + ")");
+        			employeeId);
+        			if (rs3.next()) {
         			loginedUser = new Doctor(loginedUser, rs3.getString("specializare"), rs2.getString("cabinet"));
-        	        AppUtils.storeLoginedUser(request.getSession(), loginedUser);
+        	        AppUtils.storeLoginedUser(request.getSession(), loginedUser);}
         			response.sendRedirect(request.getContextPath() + "/doctor");
         			break;
         		default:
