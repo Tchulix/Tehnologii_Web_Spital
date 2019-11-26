@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="POST" action="${pageContext.request.contextPath}/doctor_completeaza_fisa_consult">
+<form method="GET" action="${pageContext.request.contextPath}/doctor_completeaza_fisa_consult">
     <input type="hidden" name="redirectId" value="${param.redirectId}" />
     <select>
                <% 
@@ -19,7 +19,7 @@
      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "alrasjbs");
      
      Statement stm = conn.createStatement();
-     String Query = "SELECT * FROM programare where doctor_id = '" + request.getAttribute("doctor_id")+"'";
+     String Query = "SELECT * FROM programare where doctor_id = '" + request.getAttribute("doctor_id")+ "' AND data_programarii = DATE(CURDATE()) ";
      ResultSet rs = stm.executeQuery(Query);
 
      
@@ -44,6 +44,7 @@
                %>
                
                 </select>
+                <input type="submit" value= "Completeaza Fisa Consult" />
 </form>
 </body>
 </html>
