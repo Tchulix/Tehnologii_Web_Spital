@@ -31,13 +31,13 @@ public class DoctorServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (AppUtils.getLoginedUser(request.getSession()) instanceof Doctor)
 		{RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/doctor.jsp");
-		dispatcher.forward(request, response);}
+		dispatcher.forward(request, response);return;}
 		if (AppUtils.getLoginedUser(request.getSession()) instanceof Secretara)
-		{response.sendRedirect(request.getContextPath() + "/secretara");}
+		{response.sendRedirect(request.getContextPath() + "/secretara");return;}
 		if (AppUtils.getLoginedUser(request.getSession()) instanceof Administrator)
-		{response.sendRedirect(request.getContextPath() + "/admin");}
+		{response.sendRedirect(request.getContextPath() + "/admin");return;}
 		if (AppUtils.getLoginedUser(request.getSession()) instanceof Pacient)
-		{response.sendRedirect(request.getContextPath() + "/pacient");}
+		{response.sendRedirect(request.getContextPath() + "/pacient");return;}
 		response.sendRedirect(request.getContextPath()+"/");
 }
 
@@ -46,7 +46,7 @@ public class DoctorServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 }

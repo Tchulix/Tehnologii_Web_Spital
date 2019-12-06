@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -16,27 +15,15 @@
  <div class="container-fluid">
 <ul class="nav navbar-nav">
       <li><a href="${pageContext.request.contextPath}/doctor">Home</a></li>
-      <li class="active"><a>Vizualizeaza programari</a></li>
+      <li><a href="${pageContext.request.contextPath}/doctor_vizualizeaza_programari">Vizualizeaza programari</a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
 </nav>
-
-<div class="container container-table">
-<form method="GET" action="${pageContext.request.contextPath}/doctor_completeaza_fisa_consult">
-
-
-<div class="container register-form">
-            <div class="form">
-                <div class="note">
-                    <p>Acestia sunt pacientii programati astazi:</p>
-                </div>
-
-                <div class="form-content">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                    <select name="progId" class="form-control" data-style="btn-primary" multiple>
+<form method="POST" action="${pageContext.request.contextPath}/doctor_completeaza_fisa_consult">
+    <input type="hidden" name="progId" value="<%=request.getAttribute("programare_id")%>" />
+    <table class="table table-striped table-responsive-md btn-table">
+    
                <% 
     try{
      
@@ -45,7 +32,7 @@
      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "alrasjbs");
      
      Statement stm = conn.createStatement();
-     String Query = "SELECT * FROM programare where doctor_id = '" + request.getAttribute("doctor_id")+ "' AND data_programarii = DATE(CURDATE()) ";
+     String Query = "SELECT * FROM programare where id = '" + request.getAttribute("programare_id")+"' AND data_programarii = DATE(CURDATE()) ";
      ResultSet rs = stm.executeQuery(Query);
 
      
@@ -55,12 +42,33 @@
          ResultSet rs2 = getPacienti.executeQuery(query2);
          if (rs2.next()){
       %>
-       <option value="<%=rs.getInt("id") %>"><%=rs2.getString("name") %></option>
-            
+       <tr>
+               <td>Nume Pacient</td>
+               <td><%=rs2.getString("name") %> </td>
+       </tr>
+       <tr>
+               <td>Data Programarii</td>
+               <td><%=rs.getString("data_programarii") %> </td>
+       </tr>
+       <tr>
+               <td>Diagnostic</td>
+               <td><input type="text" name="diagnostic" value= "${consult.diagnostic}" /> </td>
+       </tr>
+       <tr>
+               <td>Trimitere</td>
+               <td><input type="text" name="trimitere" value= "${consult.trimitere}" /> </td>
+       </tr>
+       <tr>
+               <td>Medicamente</td>
+               <td><input type="text" name="medicamente" value= "${consult.medicamente}" /> </td>
+       </tr>
+       <tr>
+               <td>Cost</td>
+               <td><input type="text" name="cost" value= "${programare.cost}" /> </td>
+       </tr>
       <%
          }
-         }
-     
+     }
      
      
     }catch(Exception ex){
@@ -69,16 +77,8 @@
     }
                %>
                
-                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btnSubmit">Completeaza Fisa Consult</button>
-                </div>
-            </div>
-        </div>
+     </table>
+    <input type="submit" value= "Completeaza Fisa Consult" />
 </form>
-</div>
 </body>
 </html>
-

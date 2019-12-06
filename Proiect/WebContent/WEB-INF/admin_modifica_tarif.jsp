@@ -1,5 +1,4 @@
 <%@page import="java.sql.*"%>
-<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,46 +21,52 @@
 <li><a href="${pageContext.request.contextPath}/admin_creeaza_secretara">
   Adauga Cont Secretara
 </a></li>
-<li class="active"><a href="${pageContext.request.contextPath}/administrator_verifica_bilant_cabinet">
+<li><a href="${pageContext.request.contextPath}/administrator_verifica_bilant_cabinet">
   Verifica Bilant Cabinet
 </a></li>
 <li><a href="${pageContext.request.contextPath}/administrator_verifica_bilant_doctor">
   Verifica Bilant Doctor
 </a></li>
-<li><a href="${pageContext.request.contextPath}/admin_modifica_tarif">
+<li class="active"><a href="${pageContext.request.contextPath}/admin_modifica_tarif">
   Modifica Tarif Programare
 </a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
 </nav>
-    <table border="1">
-    <tr>
-   <th>Cabinet</th>
-   <th>Bilant</th>
- </tr>
+<form method="POST" action="${pageContext.request.contextPath}/admin_modifica_tarif">
+    <input type="hidden" name="redirectId" value="${param.redirectId}" />
+    <select name="progId">
                <% 
     try{
      
-     String Query = "SELECT angajat.cabinet, SUM(cost) FROM programare INNER JOIN angajat on programare.doctor_id=angajat.id GROUP BY angajat.cabinet;";
      Class.forName("com.mysql.cj.jdbc.Driver"); //.newInstance();
-     
      
      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "alrasjbs");
      
      Statement stm = conn.createStatement();
+     String Query = "SELECT * FROM programare";
+     ResultSet rs = stm.executeQuery(Query);
+
      
-     Statement getDoctori = conn.createStatement();
-     ResultSet rs = getDoctori.executeQuery(Query);
-     while(rs.next()){ 
-    	
-		%><tr><td><%=rs.getString("cabinet") %></td><td><%=rs.getString("SUM(cost)") %></td></tr><%
-    	}
-    	}catch(Exception ex){
+     while(rs.next()){           
+      %>
+       <option value="<%=rs.getInt("id") %>"><%="ID: "+rs.getInt("id")+" - Cost: "+rs.getString("cost") %></option>
+            
+      <%
+         }
+     
+     
+     
+    }catch(Exception ex){
      ex.printStackTrace();
      out.println("Error: "+ex.getMessage());
     }
-   %>
-			</table>
+               %>
+               
+                </select><input type="text" name="valNoua" value= "${programare.cost}"/>
+                <input type="submit" value= "Modifica Tarif" />
+                <a href="${pageContext.request.contextPath}/">Anuleaza</a>
+</form>
 </body>
 </html>

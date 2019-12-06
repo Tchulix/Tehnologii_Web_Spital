@@ -62,7 +62,7 @@ public class DoctorCompleteazaFisaConsult extends HttpServlet {
 				{
 					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/doctor_completeaza_fisa_consult.jsp");
 					request.setAttribute("doctor_id", getDoctorId(request));
-					request.setAttribute("programare_id", getProgramareId(request));
+					request.setAttribute("programare_id", request.getParameter("progId"));
 					dispatcher.forward(request, response);return;}
 				if (AppUtils.getLoginedUser(request.getSession()) instanceof Secretara)
 				{response.sendRedirect(request.getContextPath() + "/secretara");return;}
@@ -80,15 +80,14 @@ public class DoctorCompleteazaFisaConsult extends HttpServlet {
 		// TODO Auto-generated method stub
 		Statement updateProgramare;
 		request.setAttribute("doctor_id", getDoctorId(request));
-		request.setAttribute("programare_id", getProgramareId(request));
 		try {
 		updateProgramare = MySQLConnUtils.getMySQLConnection().createStatement();
 		String cost = request.getParameter("cost");
-    	String queryIs = "UPDATE PROGRAMARE SET cost=" + request.getParameter("cost") + " WHERE ID = " + request.getAttribute("programare_id");
+    	String queryIs = "UPDATE PROGRAMARE SET cost=" + request.getParameter("cost") + " WHERE ID = " + request.getParameter("progId");
     	updateProgramare.executeUpdate(queryIs);
     	Statement updateConsult;
     	updateConsult = MySQLConnUtils.getMySQLConnection().createStatement();
-    	String query2 = "UPDATE CONSULT SET diagnostic='" + request.getParameter("diagnostic") + "', trimitere_catre='" + request.getParameter("trimitere") + "', medicamente='" + request.getParameter("medicamente") + "' WHERE ID = " + request.getAttribute("programare_id");
+    	String query2 = "UPDATE CONSULT SET diagnostic='" + request.getParameter("diagnostic") + "', trimitere_catre='" + request.getParameter("trimitere") + "', medicamente='" + request.getParameter("medicamente") + "' WHERE ID = " + request.getParameter("progId");
     	updateConsult.executeUpdate(query2);
     	response.sendRedirect(request.getContextPath()+"/doctor_vizualizeaza_programari");
 		} catch (Exception e) {

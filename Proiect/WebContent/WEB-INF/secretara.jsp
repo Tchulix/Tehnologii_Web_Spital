@@ -3,24 +3,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+ <div class="container-fluid">
+<ul class="nav navbar-nav">
+      <li class="active"><a href="${pageContext.request.contextPath}/secretara">Home</a></li>
+<li>
 <a href="${pageContext.request.contextPath}/secretara_creeaza_programare">
   Adauga o Programare
-</a>
-<a href="${pageContext.request.contextPath}/secretara_modifica_programare">
+</a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_modifica_programare">
   Modifica o Programare
-</a>
-<a href="${pageContext.request.contextPath}/secretara_creeaza_interventie">
+</a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_creeaza_interventie">
   Programeaza o interventie chirurgicala
-</a>
-<<<<<<< HEAD
+</a></li>
+<li>
 <a href="${pageContext.request.contextPath}/secretara_vizualizeaza_interventii">
   Vizualizeaza interventii chirurgicale
-</a>
-=======
->>>>>>> branch 'master' of https://github.com/Tchulix/Tehnologii_Web_Spital.git
+</a></li>
+      <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
+    </ul>
+    </div>
+</nav>
 </body>
 </html>

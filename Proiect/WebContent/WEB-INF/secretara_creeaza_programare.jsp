@@ -5,11 +5,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> Titlu </title>
 </head>
 
 <body>
+<nav class="navbar navbar-inverse">
+ <div class="container-fluid">
+<ul class="nav navbar-nav">
+      <li><a href="${pageContext.request.contextPath}/secretara">Home</a></li>
+<li class="active">
+<a href="${pageContext.request.contextPath}/secretara_creeaza_programare">
+  Adauga o Programare
+</a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_modifica_programare">
+  Modifica o Programare
+</a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_creeaza_interventie">
+  Programeaza o interventie chirurgicala
+</a></li>
+<li>
+<a href="${pageContext.request.contextPath}/secretara_vizualizeaza_interventii">
+  Vizualizeaza interventii chirurgicale
+</a></li>
+      <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
+    </ul>
+    </div>
+</nav>
 <br><br><br>
 <form method="POST" action="${pageContext.request.contextPath}/secretara_creeaza_programare">
     <input type="hidden" name="redirectId" value="${param.redirectId}" />
