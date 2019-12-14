@@ -22,6 +22,11 @@ public class AppUtils {
         User loginedUser = (User) session.getAttribute("loginedUser");
         return loginedUser;
     }
+    
+    public static String getLoginedName(HttpSession session) {
+        User loginedUser = (User) session.getAttribute("loginedUser");
+        return loginedUser.getName();
+    }
  
     public static int storeRedirectAfterLoginUrl(HttpSession session, String requestUri) {
         Integer id = uri_id_map.get(requestUri);

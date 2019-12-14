@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
@@ -11,16 +12,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AdminModificaTarif
+ * Servlet implementation class PacientVizualizeazaProgramari
  */
-@WebServlet("/admin_modifica_tarif")
-public class AdminModificaTarif extends HttpServlet {
+@WebServlet("/pacient_vizualizare_programari")
+public class PacientVizualizeazaProgramari extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+     
+	public static long getPacientCnp(HttpServletRequest request) {
+		try {
+			Statement getDoctorId = MySQLConnUtils.getMySQLConnection().createStatement();
+			ResultSet rs = getDoctorId.executeQuery("SELECT cnp FROM USER WHERE user_name = '"+
+					AppUtils.getLoginedUser(request.getSession()).getUserName() + "';");
+			if (rs.next()) {
+				return rs.getLong("cnp");}
+			return 0;}
+		catch (Exception e) {
+			e.printStackTrace();return 0;
+		}
+	}
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminModificaTarif() {
+    public PacientVizualizeazaProgramari() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,16 +43,16 @@ public class AdminModificaTarif extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (AppUtils.getLoginedUser(request.getSession()) instanceof Administrator)
-		{RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/admin_modifica_tarif.jsp");
+		if (AppUtils.getLoginedUser(request.getSession()) instanceof Pacient)
+		{RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/pacient_vizualizare_programari.jsp");
+		request.setAttribute("pacient_cnp", getPacientCnp(request));
 		dispatcher.forward(request, response);return;}
 		if (AppUtils.getLoginedUser(request.getSession()) instanceof Secretara)
 		{response.sendRedirect(request.getContextPath() + "/secretara");return;}
 		if (AppUtils.getLoginedUser(request.getSession()) instanceof Doctor)
 		{response.sendRedirect(request.getContextPath() + "/doctor");return;}
-		if (AppUtils.getLoginedUser(request.getSession()) instanceof Pacient)
-		{response.sendRedirect(request.getContextPath() + "/pacient");return;}
+		if (AppUtils.getLoginedUser(request.getSession()) instanceof Administrator)
+		{response.sendRedirect(request.getContextPath() + "/admin");return;}
 		response.sendRedirect(request.getContextPath()+"/");
 	}
 
@@ -47,17 +61,6 @@ public class AdminModificaTarif extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Statement updateProgramare;
-		try {
-		updateProgramare = MySQLConnUtils.getMySQLConnection().createStatement();
-		String cost = request.getParameter("valNoua");
-    	String queryIs = "UPDATE PROGRAMARE SET cost=" + cost + " WHERE ID = " + request.getParameter("progId");
-    	updateProgramare.executeUpdate(queryIs);
-    	response.sendRedirect(request.getContextPath()+"/admin_modifica_tarif");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}        
 	}
 
 }

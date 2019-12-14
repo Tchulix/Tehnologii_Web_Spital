@@ -65,13 +65,7 @@ try {
 	    	    	+ "-" + Integer.parseInt(request.getParameter("zi")) + "';");
 	    	if (progID.next())
 	        progrID = progID.getInt("id");
-	    	
-	    	Statement addConsult = MySQLConnUtils.getMySQLConnection().createStatement();
-	    	
-	    	String query2 = "INSERT INTO CONSULT (id, diagnostic, trimitere_catre, medicamente) VALUES (" + progrID + ",'','','');";
 
-	    	addConsult.executeUpdate(query2);
-	    	
 	    	Statement addInterventie = MySQLConnUtils.getMySQLConnection().createStatement();
 	    	String query3 = "INSERT INTO INTERVENTIE_CHIRURGICALA (id, durata_estimata, personal, ustensile) VALUES (" + progrID + ", " + (Integer.parseInt(request.getParameter("ore"))*60+Integer.parseInt(request.getParameter("minute"))) + ", '" +
 	    	    	request.getParameter("personal") + "', '" + request.getParameter("ustensile") + "');";

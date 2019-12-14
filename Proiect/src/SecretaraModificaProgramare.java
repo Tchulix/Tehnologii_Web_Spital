@@ -47,21 +47,7 @@ public class SecretaraModificaProgramare extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try {
-		if (request.getParameter("Sterge")!=null)
-		{
-			Statement deleteConsult = MySQLConnUtils.getMySQLConnection().createStatement();
-			deleteConsult.executeUpdate("DELETE FROM CONSULT WHERE ID = " + request.getParameter("programareName"));
-			Statement deleteProgramare = MySQLConnUtils.getMySQLConnection().createStatement();
-			String programareName = request.getParameter("programareName");
-			deleteProgramare.executeUpdate("DELETE FROM PROGRAMARE WHERE ID = " + request.getParameter("programareName"));
-			return;
-		}
 		
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 }
