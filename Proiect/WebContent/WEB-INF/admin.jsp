@@ -33,5 +33,12 @@
     </ul>
     </div>
 </nav>
+
+
+<div class="container">
+  <h2>Logat ca: Administrator. Pentru a utiliza facilitatile, folositi bara de navigare.</h2>
+</div>
+
+
 </body>
 </html>

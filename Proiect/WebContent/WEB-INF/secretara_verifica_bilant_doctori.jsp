@@ -1,5 +1,4 @@
 <%@page import="java.sql.*"%>
-<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,31 +10,37 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 <nav class="navbar navbar-inverse">
  <div class="container-fluid">
 <ul class="nav navbar-nav">
-      <li><a href="${pageContext.request.contextPath}/pacient">Home</a></li>
-<li><a href="${pageContext.request.contextPath}/admin_creeaza_doctor">
-  Adauga Cont Doctor
+      <li><a href="${pageContext.request.contextPath}/secretara">Home</a></li>
+<li>
+<a href="${pageContext.request.contextPath}/secretara_creeaza_programare">
+  Adauga o Programare
 </a></li>
-<li><a href="${pageContext.request.contextPath}/admin_creeaza_secretara">
-  Adauga Cont Secretara
+<li><a href="${pageContext.request.contextPath}/secretara_modifica_programare">
+  Modifica o Programare
 </a></li>
-<li><a href="${pageContext.request.contextPath}/administrator_verifica_bilant_cabinet">
-  Verifica Bilant Cabinet
+<li><a href="${pageContext.request.contextPath}/secretara_creeaza_interventie">
+  Programeaza o interventie chirurgicala
 </a></li>
-<li class="active"><a href="${pageContext.request.contextPath}/administrator_verifica_bilant_doctor">
+<li>
+<a href="${pageContext.request.contextPath}/secretara_vizualizeaza_interventii">
+  Vizualizeaza interventii chirurgicale
+</a></li>
+<li class="active"><a href="${pageContext.request.contextPath}/secretara_verifica_bilant_doctori">
   Verifica Bilant Doctor
 </a></li>
-<li><a href="${pageContext.request.contextPath}/admin_modifica_tarif">
-  Modifica Tarif Programare
+<li><a href="${pageContext.request.contextPath}/secretara_vezi_fisa_consult">
+  Vezi Fisa Consult
 </a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
 </nav>
-    <table class="table table-striped table-responsive-md btn-table">
+<table class="table table-striped table-responsive-md btn-table">
     <tr>
    <th>Doctor</th>
    <th>Bilant</th>
@@ -63,5 +68,6 @@
     }
    %>
 			</table>
+
 </body>
 </html>

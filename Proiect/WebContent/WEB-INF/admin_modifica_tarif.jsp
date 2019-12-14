@@ -36,7 +36,8 @@
 </nav>
 <form method="POST" action="${pageContext.request.contextPath}/admin_modifica_tarif">
     <input type="hidden" name="redirectId" value="${param.redirectId}" />
-    <select name="progId">
+    <table class="table table-striped table-responsive-md btn-table">
+    <tr><td><select name="progId">
                <% 
     try{
      
@@ -64,9 +65,8 @@
     }
                %>
                
-                </select><input type="text" name="valNoua" value= "${programare.cost}"/>
-                <input type="submit" value= "Modifica Tarif" />
-                <a href="${pageContext.request.contextPath}/">Anuleaza</a>
+                </select></td><td><input type="text" name="valNoua" value= "${programare.cost}"/>
+                </td><td><input type="submit" value= "Modifica Tarif" /></td>
 </form>
 </body>
 </html>

@@ -31,6 +31,12 @@
 <a href="${pageContext.request.contextPath}/secretara_vizualizeaza_interventii">
   Vizualizeaza interventii chirurgicale
 </a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_verifica_bilant_doctori">
+  Verifica Bilant Doctor
+</a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_vezi_fisa_consult">
+  Vezi Fisa Consult
+</a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
@@ -38,7 +44,7 @@
 <br><br><br>
 <form method="POST" action="${pageContext.request.contextPath}/secretara_creeaza_programare">
     <input type="hidden" name="redirectId" value="${param.redirectId}" />
-         <table border="0">
+         <table class="table table-striped table-responsive-md btn-table">
   <tr>
   	<td><label  style="margin-right: 150px">Nume pacient:</label></td>
   	<td><select name="pacientName"> 
@@ -161,7 +167,6 @@
 			<tr>
                <td colspan ="2">
                   <input type="submit" value= "Programeaza!" />
-                  <a href="${pageContext.request.contextPath}/secretara">Anuleaza</a>
                </td>
             </tr>  
           

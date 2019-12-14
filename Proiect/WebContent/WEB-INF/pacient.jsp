@@ -19,12 +19,17 @@
 Programare Online!
 </a></li>
 <li>
-<a href="${pageContext.request.contextPath}/pacient_vizualizare_rezultate">
-Vezi rezultate
+<a href="${pageContext.request.contextPath}/pacient_vizualizare_programari">
+Vezi Programari
 </a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
 </nav>
+
+<div class="container">
+  <h2>Logat ca: Pacient. Pentru a utiliza facilitatile, folositi bara de navigare.</h2>
+</div>
+
 </body>
 </html>

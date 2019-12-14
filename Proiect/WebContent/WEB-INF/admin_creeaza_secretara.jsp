@@ -35,7 +35,7 @@
 </nav>
 <form method="POST" action="${pageContext.request.contextPath}/admin_creeaza_secretara">
     <input type="hidden" name="redirectId" value="${param.redirectId}" />
-         <table border="0">
+         <table class="table table-striped table-responsive-md btn-table">
          
             <tr>
                <td>Nume</td>
@@ -176,7 +176,6 @@
             <tr>
                <td colspan ="2">
                   <input type="submit" value= "Creeaza" />
-                  <a href="${pageContext.request.contextPath}/">Renunta</a>
                </td>
             </tr>  
       

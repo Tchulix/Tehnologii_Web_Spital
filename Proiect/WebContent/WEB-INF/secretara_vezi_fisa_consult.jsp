@@ -21,7 +21,7 @@
 <a href="${pageContext.request.contextPath}/secretara_creeaza_programare">
   Adauga o Programare
 </a></li>
-<li class="active"><a href="${pageContext.request.contextPath}/secretara_modifica_programare">
+<li ><a href="${pageContext.request.contextPath}/secretara_modifica_programare">
   Modifica o Programare
 </a></li>
 <li><a href="${pageContext.request.contextPath}/secretara_creeaza_interventie">
@@ -34,60 +34,54 @@
 <li><a href="${pageContext.request.contextPath}/secretara_verifica_bilant_doctori">
   Verifica Bilant Doctor
 </a></li>
-<li><a href="${pageContext.request.contextPath}/secretara_vezi_fisa_consult">
+<li class="active"><a href="${pageContext.request.contextPath}/secretara_vezi_fisa_consult">
   Vezi Fisa Consult
 </a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
 </nav>
-<br><br><br>
-<form method="GET" action="${pageContext.request.contextPath}/secretara_modifica_buton_programare">
-    <input type="hidden" name="redirectId" value="${param.redirectId}" />
-         <table class="table table-striped table-responsive-md btn-table">
-  <tr>
-  	<td><label  style="margin-right: 150px">Alege programarea:</label></td>
-  	<td><select name="programareName"> 
-   <option value="-1">Alege Pacientul</option>
+
+
+<div class="container container-table">
+<form method="GET" action="${pageContext.request.contextPath}/secretara_vezi_rezultate_consult">
+<div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>Vezi programari (Pacient - Doctor - Data):</p>
+                </div>
+
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                    <select name="progId" class="form-control" data-style="btn-primary" multiple>
                <% 
     try{
      
-     String Query = "SELECT * FROM programare";
      Class.forName("com.mysql.cj.jdbc.Driver"); //.newInstance();
-     
      
      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "alrasjbs");
      
      Statement stm = conn.createStatement();
-     
-     Statement getPacientName = conn.createStatement();
-     
+     String Query = "SELECT * FROM programare INNER JOIN consult ON programare.id = consult.id ORDER BY pacient_cnp ";
      ResultSet rs = stm.executeQuery(Query);
-     
-     String pacientName="";
-     String doctorName="";
-     
-     while(rs.next()){           
-         ResultSet rs2 = getPacientName.executeQuery("SELECT name from user, pacient WHERE user.cnp = " + rs.getLong("pacient_cnp"));
-         if (rs2.next())
-         {
-        	 Statement getDoctorName = conn.createStatement();
-        	 ResultSet rs3 = getDoctorName.executeQuery("SELECT name FROM user INNER JOIN angajat ON user.user_name=angajat.user_name WHERE angajat.id=" + rs.getInt("doctor_id"));
-        	 if (rs3.next())
-        	 {
-        		 pacientName = rs2.getString("name");
-        		 doctorName = rs3.getString("name");
-        	 }
-         }
-         
-         String mesaj = pacientName + " - " + doctorName + " - " + rs.getString("data_programarii");
-      
+	Statement stm2 = conn.createStatement();
+     Statement stm3 = conn.createStatement();
+     while(rs.next()){      
+         String query2 = "SELECT name FROM user INNER JOIN angajat ON user.user_name=angajat.user_name WHERE angajat.id= " + rs.getString("doctor_id");
+         ResultSet rs2 = stm2.executeQuery(query2);
+         if (rs2.next()){
+        	 String query3 = "SELECT name FROM user WHERE cnp= " + rs.getLong("pacient_cnp");
+             ResultSet rs3 = stm3.executeQuery(query3);
+        	 if (rs3.next()){
       %>
-       <option value="<%=rs.getInt("id") %>"><%=mesaj %></option>
+       <option value="<%=rs.getInt("id") %>"><%=rs3.getString("name") + " - " + rs2.getString("name")+ " - " + rs.getString("data_programarii") %></option>
             
       <%
-     }
-     
+        	 }
+        	 }
+         }
      
      
      
@@ -98,21 +92,16 @@
                %>
                
                 </select>
-                </td>
-              </tr>
-   
-			<tr>
-               <td colspan ="2">
-                  <button type="submit" name="Modifica o Programare" >Modifica o programare!</button>
-               </td>
-            </tr>  
-            			<tr>
-               <td colspan ="2">
-                  <button type="submit" name="Sterge" >Sterge</button>
-               </td>
-            </tr>  
-			
-			</table>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btnSubmit">Vezi rezultatele consultului</button>
+                </div>
+            </div>
+        </div>
 </form>
+</div>
+
+
 </body>
 </html>

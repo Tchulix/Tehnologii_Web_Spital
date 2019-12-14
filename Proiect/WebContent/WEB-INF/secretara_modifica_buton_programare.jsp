@@ -21,7 +21,7 @@
 <a href="${pageContext.request.contextPath}/secretara_creeaza_programare">
   Adauga o Programare
 </a></li>
-<li><a href="${pageContext.request.contextPath}/secretara_modifica_programare">
+<li class="active"><a href="${pageContext.request.contextPath}/secretara_modifica_programare">
   Modifica o Programare
 </a></li>
 <li><a href="${pageContext.request.contextPath}/secretara_creeaza_interventie">
@@ -31,39 +31,38 @@
 <a href="${pageContext.request.contextPath}/secretara_vizualizeaza_interventii">
   Vizualizeaza interventii chirurgicale
 </a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_verifica_bilant_doctori">
+  Verifica Bilant Doctor
+</a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_vezi_fisa_consult">
+  Vezi Fisa Consult
+</a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
 </nav>
 <br><br><br>
 <form method="POST" action="${pageContext.request.contextPath}/secretara_modifica_buton_programare">
-    <input type="hidden" name="redirectId" value="${param.redirectId}" />
-         <table border="0">
+    <input type="hidden" name="progId" value="<%=request.getAttribute("progId")%>"/>
+         <table class="table table-striped table-responsive-md btn-table">
   <tr>
   	<td><label  style="margin-right: 150px">Nume pacient:</label></td>
-  	<td><select name="pacientName"> 
-   <option value="-1">Alege Pacientul</option>
-               <% 
+  	<td> <%
+              
     try{
      
-     String Query = "SELECT * FROM user, pacient WHERE user.cnp = pacient.cnp";
+     String Query = "SELECT user.name FROM user, pacient, programare WHERE user.cnp = pacient.cnp AND programare.pacient_cnp = user.cnp AND programare.id = "+request.getAttribute("progId") + ";";
      Class.forName("com.mysql.cj.jdbc.Driver"); //.newInstance();
      
      
-     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "123456!");
+     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "alrasjbs");
      
      Statement stm = conn.createStatement();
      
      ResultSet rs = stm.executeQuery(Query);
      
-     while(rs.next()){           
-      %>
-       <option value="<%=rs.getLong("cnp") %>"><%=rs.getString("name") %></option>
-            
-      <%
-     }
-     
-     
+     if (rs.next())
+     { %> <%=rs.getString("name") %> <% }
      
     }catch(Exception ex){
      ex.printStackTrace();
@@ -71,7 +70,7 @@
     }
                %>
                
-                </select>
+              
                 </td>
               </tr>
    <tr><td><label  style="margin-right: 150px">Nume doctor:</label></td><td><select name="doctorName">
@@ -83,7 +82,7 @@
      Class.forName("com.mysql.cj.jdbc.Driver"); //.newInstance();
      
      
-     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "123456!");
+     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spital","root", "alrasjbs");
      
      Statement stm = conn.createStatement();
      
@@ -162,7 +161,6 @@
 			<tr>
                <td colspan ="2">
                   <input type="submit" value= "Modifica Programarea!" />
-                  <a href="${pageContext.request.contextPath}/secretara">Anuleaza</a>
                </td>
             </tr>  
           

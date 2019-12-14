@@ -29,12 +29,18 @@
 <a href="${pageContext.request.contextPath}/secretara_vizualizeaza_interventii">
   Vizualizeaza interventii chirurgicale
 </a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_verifica_bilant_doctori">
+  Verifica Bilant Doctor
+</a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_vezi_fisa_consult">
+  Vezi Fisa Consult
+</a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
 </nav>
 
-    <table border="1">
+    <table class="table table-striped table-responsive-md btn-table">
     <tr>
    <th>Pacient</th>
    <th>Doctor</th>

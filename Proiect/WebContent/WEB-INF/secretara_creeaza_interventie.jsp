@@ -30,6 +30,12 @@
 <a href="${pageContext.request.contextPath}/secretara_vizualizeaza_interventii">
   Vizualizeaza interventii chirurgicale
 </a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_verifica_bilant_doctori">
+  Verifica Bilant Doctor
+</a></li>
+<li><a href="${pageContext.request.contextPath}/secretara_vezi_fisa_consult">
+  Vezi Fisa Consult
+</a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
     </div>
@@ -37,7 +43,7 @@
 <br><br><br>
 <form method="POST" action="${pageContext.request.contextPath}/secretara_creeaza_interventie">
     <input type="hidden" name="redirectId" value="${param.redirectId}" />
-         <table border="0">
+         <table class="table table-striped table-responsive-md btn-table">
   <tr>
   	<td><label  style="margin-right: 150px">Nume pacient:</label></td>
   	<td><select name="pacientName"> 
@@ -103,7 +109,7 @@
     }
                %>
                
-                </select></td><tr><td>Data programarii</td><td>
+                </select></td><tr><td><label  style="margin-right: 150px">Data programarii</label></td><td>
                 
                   <select name="zi"}>
 				  <option value="1">1</option>
@@ -170,7 +176,7 @@
 				  <option value="10">10</option>
 				  <option value="11">11</option>
 				  <option value="12">12</option>
-				  </select>
+				  </select> ore, 
 				   <select name="minute">
 				  <option value="1">1</option>
 				  <option value="2">2</option>
@@ -231,27 +237,26 @@
 				  <option value="57">57</option>
 				  <option value="58">58</option>
 				  <option value="59">59</option>
+				   
 				  
-				  
-			</select>
+			</select> minute.
 			</td></tr>
 			<tr>
-          	<td>Cost</td>
+          	<td><label  style="margin-right: 150px">Cost</label></td>
           	<td><input type="text" name="cnp" value= "${user.cnp}" /> </td>
           </tr>
 			 <tr>
-               <td>Personal</td>
+               <td><label  style="margin-right: 150px">Personal</label></td>
                <td><input type="text" name="personal" value=""/> </td>
             </tr>
              <tr>
-               <td>Ustensile</td>
+               <td><label  style="margin-right: 150px">Ustensile</label></td>
                <td><input type="text" name="ustensile" value="" /> </td>
             </tr>
 			
 			<tr>
                <td colspan ="2">
-                  <input type="submit" value= "Programeaza!" />
-                  <a href="${pageContext.request.contextPath}/secretara">Anuleaza</a>
+                  <input type="submit" value= "Programeaza" />
                </td>
             </tr>  
 			

@@ -35,7 +35,7 @@
     </ul>
     </div>
 </nav>
-    <table border="1">
+    <table class="table table-striped table-responsive-md btn-table">
     <tr>
    <th>Cabinet</th>
    <th>Bilant</th>

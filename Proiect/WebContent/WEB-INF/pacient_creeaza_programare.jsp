@@ -21,8 +21,8 @@
 Programare Online!
 </a></li>
 <li>
-<a href="${pageContext.request.contextPath}/pacient_vizualizare_rezultate">
-Vezi rezultate
+<a href="${pageContext.request.contextPath}/pacient_vizualizare_programari">
+Vezi Programari
 </a></li>
       <li><a href="${pageContext.request.contextPath}/">Log out</a></li>
     </ul>
@@ -31,7 +31,7 @@ Vezi rezultate
 <br><br><br>
 <form method="POST" action="${pageContext.request.contextPath}/pacient_creeaza_programare">
     <input type="hidden" name="redirectId" value="${param.redirectId}" />
-         <table border="0">
+         <table class="table table-striped table-responsive-md btn-table">
    <tr><td><label  style="margin-right: 150px">Nume doctor:</label></td><td><select name="doctorName">
    <option value="-1">Alege Doctorul</option>
                <% 
@@ -119,7 +119,6 @@ Vezi rezultate
 			<tr>
                <td colspan ="2">
                   <input type="submit" value= "Programeaza!" />
-                  <a href="${pageContext.request.contextPath}/pacient">Anuleaza</a>
                </td>
             </tr>  
 			

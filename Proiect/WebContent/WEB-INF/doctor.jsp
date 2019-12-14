@@ -19,5 +19,10 @@
     </ul>
     </div>
 </nav>
+
+<div class="container">
+  <h2>Logat ca: Doctor. Pentru a utiliza facilitatile, folositi bara de navigare.</h2>
+</div>
+
 </body>
 </html>
